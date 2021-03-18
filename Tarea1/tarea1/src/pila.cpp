@@ -3,6 +3,8 @@
 #include "../include/pila.h"
 #include "../include/lista.h"
 #include "../include/utils.h"
+#include "../include/cola.h"
+#include "../include/mapping.h"
 
 #include <assert.h>
 

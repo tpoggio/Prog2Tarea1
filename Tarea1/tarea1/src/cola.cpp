@@ -3,6 +3,8 @@
 #include "../include/pila.h"
 #include "../include/lista.h"
 #include "../include/utils.h"
+#include "../include/cola.h"
+#include "../include/mapping.h"
 
 #include <assert.h>
 
@@ -23,7 +25,7 @@ TCola crearCola(){
   Devuelve 'true' si y solo si 'cola' no tiene elementos.
  */
 bool esVaciaCola(TCola cola){
-    return longitud((*coola).lst) == 0;
+    return longitud((*cola).lst) == 0;
 }
 
 /*
@@ -33,7 +35,7 @@ bool esVaciaCola(TCola cola){
  */
 TCola encolar(info_t nuevo, TCola cola){
     if( longitud(*cola).lst) < MAX ){
-        (*cola).lst = insertar(longitud(*cola).lst) + 1, nuevo, (*cola).lst);
+        (*cola).lst = insertar(longitud( (*cola).lst) + 1, nuevo, (*cola).lst);
         return cola
     }
 }

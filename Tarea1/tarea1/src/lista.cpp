@@ -1,17 +1,9 @@
-/*
-  Módulo de implementación de 'TLista'.
 
-
-  Laboratorio de Programación 2.
-  InCo-FIng-UDELAR
- */
-
-/*
-  Se incluyen los archivos en donde se declaran las operaciones y tipos que se
-  deben implentar.
- */
+#include "../include/pila.h"
 #include "../include/lista.h"
 #include "../include/utils.h"
+#include "../include/cola.h"
+#include "../include/mapping.h"
 
 // Biblioteca estándar
 #include <assert.h>
