@@ -1,3 +1,4 @@
+/* 5330504 */
 /*
   Módulo de definición de 'TCola'.
 

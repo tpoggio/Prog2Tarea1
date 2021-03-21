@@ -1,14 +1,17 @@
+/* 5330504 */
 
 #include "../include/pila.h"
 #include "../include/lista.h"
 #include "../include/utils.h"
 #include "../include/cola.h"
 #include "../include/mapping.h"
+#include <assert.h>
+#include <stdio.h>
 
 struct _rep_mapping {
   nat asociaciones;
   info_t pares[MAX];
-}
+};
 
 /*
   Devuelve un elemento de tipo 'TMapping' vacío (sin elementos).
@@ -19,6 +22,27 @@ TMapping crearMapping(){
   return res;
 }
 
+TMapping imprimirMapping(TMapping map){
+  nat tope = (*map).asociaciones;
+  for( nat i = 0; i < tope; i++){
+    printf("\n");
+    printf("clave: ");
+    printf("%d",(*map).pares[i].natural);
+    printf("\n");
+    printf("valor: ");
+    printf("%f",(*map).pares[i].real);
+    printf("\n");
+    printf("asociaciones: ");
+    printf("%d",(*map).asociaciones);
+    printf("\n");
+  }
+  /*for(nat i = 0; i < 10; i++){
+    printf("%d",(*map).pares[i].natural);
+    printf("\n");
+  }*/
+  return map;
+}
+
 /*
   Si en 'map' hay menos de MAX (definido en utils.h) asociaciones y 'clave'
   no tiene un valor asociado en 'map' agrega en 'map' la asociación
@@ -26,9 +50,10 @@ TMapping crearMapping(){
   Devuelve 'map'.
  */
 TMapping asociar(nat clave, double valor, TMapping map){
-  if((*map).asociaciones < MAX ){
-    (*map).pares[(*map).asociaciones].natural = clave;
-    (*map).pares[(*map).asociaciones].real = valor;
+  nat pos = (*map).asociaciones;
+  if( ((*map).asociaciones < MAX) && (!esClave(clave, map))){
+    (*map).pares[pos].natural = clave;
+    (*map).pares[pos].real = valor;
     (*map).asociaciones++;
   }
   return map;
@@ -43,6 +68,8 @@ bool esClave(nat clave, TMapping map){
   while( i < (*map).asociaciones && !encontrado ){
     if( (*map).pares[i].natural == clave ){
       encontrado = true;
+    }else{
+      i++;
     }
   }
   return encontrado;
@@ -59,10 +86,11 @@ double valor(nat clave, TMapping map){
   while(!encontrado){
     if(  (*map).pares[i].natural == clave ){
       encontrado = true;
-      return ( (*map).pares[i].real )
+    }else{
+    i++;
     }
-    i++
   }
+  return ( (*map).pares[i].real );
 }
 
 /*
@@ -73,18 +101,19 @@ double valor(nat clave, TMapping map){
 TMapping desasociar(nat clave, TMapping map){
   nat i = 0;
   bool encontrado = false;
-  while(!encontrado){
+  while( i < (*map).asociaciones && !encontrado){
     if(  (*map).pares[i].natural == clave ){
       encontrado = true;
     }else{ 
       i++;
     }
   }
-  for(i; i < (*map).asociaciones; i++){
-    (*map).pares[i] = (*map).pares[i+1]; 
+  if(encontrado){
+    for(nat j = i; j < (*map).asociaciones; j++){
+      (*map).pares[j] = (*map).pares[j+1]; 
+    }
+    (*map).asociaciones--;
   }
-  //TODO DELETE LA MEMORIA
   return map;
 }
 
-#endif

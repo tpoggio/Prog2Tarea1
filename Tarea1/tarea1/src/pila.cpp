@@ -10,13 +10,13 @@
 
 struct _rep_pila {
     TLista lst;
-}
+};
 
 /*
   Devuelve un elemento de tipo 'TPila' vacío (sin elementos).
  */
 TPila crearPila(){
-    Tpila resultado = new _rep_pila;
+    TPila resultado = new _rep_pila;
     (*resultado).lst = crearLista();
     return resultado;
 }
@@ -34,7 +34,7 @@ bool esVaciaPila(TPila pila){
   Devuelve 'pila'.
  */
 TPila apilar(info_t nuevo, TPila pila){
-    (*pila).lst = insertar(longitud(*pila).lst) + 1, nuevo, (*pila).lst);
+    (*pila).lst = insertar(longitud((*pila).lst) + 1, nuevo, (*pila).lst);
     return pila;
 }
 
@@ -53,8 +53,8 @@ info_t cima(TPila pila){
   Devuelve 'pila'.
  */
 TPila desapilar(TPila pila){
-    (*pila).lst = remover(longitud(*pila).lst), (*pila).lst);
-    return pila
+    (*pila).lst = remover(longitud((*pila).lst), (*pila).lst);
+    return pila;
 }
 
-#endif
+

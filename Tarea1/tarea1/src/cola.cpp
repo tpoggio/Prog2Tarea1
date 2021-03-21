@@ -10,13 +10,13 @@
 
 struct _rep_cola {
     TLista lst;
-}
+};
 
 /*
   Devuelve un elemento de tipo 'TCola' vacío (sin elementos).
  */
 TCola crearCola(){
-    Tcola resultado = new _rep_cola;
+    TCola resultado = new _rep_cola;
     (*resultado).lst = crearLista();
     return resultado;
 }
@@ -34,10 +34,10 @@ bool esVaciaCola(TCola cola){
   Devuelve 'cola'.
  */
 TCola encolar(info_t nuevo, TCola cola){
-    if( longitud(*cola).lst) < MAX ){
+    if( longitud((*cola).lst) < MAX ){
         (*cola).lst = insertar(longitud( (*cola).lst) + 1, nuevo, (*cola).lst);
-        return cola
     }
+    return cola;
 }
 
 /*
@@ -46,7 +46,7 @@ TCola encolar(info_t nuevo, TCola cola){
  */
 info_t frente(TCola cola){
     assert(!esVaciaCola(cola));
-    pos = 1;
+    int pos = 1;
     return infoLista(pos, (*cola).lst);
 }
 
@@ -56,12 +56,12 @@ info_t frente(TCola cola){
   Devuelve 'cola'.
  */
 TCola desencolar(TCola cola){
-    if(!esVaciaCola){
-        pos = 1;
+    if(!esVaciaCola(cola)){
+        int pos = 1;
         (*cola).lst = remover(pos, (*cola).lst);
-        return cola;
     }
+    return cola;
 
 }
 
-#endif
+
